@@ -1,0 +1,28 @@
+proc compare {m n} {
+	set M [string length $m]
+	set N [string length $n]
+	set ∆ [expr {$N - $M}]
+
+	fp[−(M+1)..(N+1)] := −1
+	p := −1
+	do {
+		p := p + 1
+		for k := −p to ∆−1 do
+			fp[k] := snake(k, max(fp[k−1]+1, fp[k+1]))
+		for k := ∆ + p downto ∆ + 1 by −1 do
+			fp[k] := snake(k, max(fp[k−1]+1, fp[k+1]))
+		fp[∆] := snake(∆, max(fp[∆−1] + 1, fp[∆+1]))
+	} until fp[∆] == N
+
+	return ∆+2p;
+}
+
+proc snake {k y} {
+	upvar 1 M M N N A A B B
+	set x [expr {$y − $k}]
+	while { $x < $M && $y < $N && $A[x+1] == $B[y+1] } {
+		incr x
+		incr y
+	}
+	return y
+}

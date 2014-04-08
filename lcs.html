@@ -1,0 +1,35 @@
+<html>
+  <head><title>x</title></head>
+  <body>
+	<style type='text/css'>
+	  ins { background:#afa; }
+	  del { background:#faa; }
+	</style>
+
+	<script type='text/javascript' src='lcs.js'></script>
+
+	<script type='text/javascript'>
+		var A = ""
+			+".titles >.root.group			{ padding-left:0.0em; margin-top:0.25em; margin-bottom:0.72em; }\n"
+			+".titles >.root.group>.group:first-child {\n"
+			+"	color:grey; font-weight:bold; display:block;\n"
+			+"}\n"
+			+".titles >.root.group>.chunk	{ display:inline-block; margin-left:1.0em; }\n"
+			+".titles .chunk>.group:hover	{ color:grey; }\n"
+			+".titles .chunk>.role:hover	{ color:grey; }\n"
+			+".titles .chunk:after			{ content:';'; }\n";
+		var B = ""
+			+".titles >.root.group			{ padding-left:0.0em; margin-top:0.25em; margin-bottom:0.50em; }\n"
+			+".titles >.root.group>.group:first-child {\n"
+			+"	color:grey; font-weight:bold; display:inline;\n"
+			+"}\n"
+			+".titles >.root.group>.chunk	{ display:inline-block; margin-left:1.0em; }\n"
+			+".titles .chunk>.group:hover	{ color:red; }\n"
+			+".titles .chunk>.role:hover	{ color:red; }\n"
+			+".titles .chunk:after			{ content:';'; }\n";
+
+		var d = new Diff(A, B);
+		document.write(d.asHTML());
+	</script>
+  </body>
+</html>
