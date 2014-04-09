@@ -1,3 +1,36 @@
+function edit_distance(A, B) {
+	var M = A.length;
+	var N = B.length;
+	var D = N-M;
+	if(N < M) {
+		return edit_distance(B, A);
+	}
+
+	// fp[-(M+1)...(N+1)] := -1;
+	var fp = [];
+	for(var i = -(M+1); i <= (N+1); i++) { fp[i] = -1; }
+
+	function snake(k) {
+		var y = max(fp[k-1] + 1, fp[k+1]);
+		for(var x = y-k; x < M && y < N && A[x] == B[y]; x++, y++) {}
+		return y;
+	}
+
+	var p = -1;
+	do {
+		p++;
+		for(k =    -p; k < D; k++) {
+			fp[k] = snake(k);
+		}
+		for(k = D + p; k > D; k--) {
+			fp[k] = snake(k);
+		}
+		fp[D] = snake(D);
+	} while(fp[D] != N);
+	return D + (2*p);
+}
+
+
 function max(a,b) { if(a>=b) { return a; } else { return b; }
 
 function diff(A,B) {
