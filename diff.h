@@ -4,6 +4,11 @@
 #	include <string.h>
 #	include <assert.h>
 
+/*	Darwin/Mac OS X:
+	uint64_t cache_line_size = 0;
+	size_t len = sizeof(uint64_t);
+	int err = sysctlbyname("hw.cachelinesize", (void*)&cache_line_size, &len, NULL, 0);
+*/
 #	define L1_CACHE_LINE_BYTES	16
 #	define ssize_t				long
 
